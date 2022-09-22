@@ -42,7 +42,7 @@ public class CosStub {
 //    }
 
     @ParameterizedTest
-    @CsvFileSource(resources = "/in/Cos.csv")
+    @CsvFileSource(resources = "/out/Cos.csv")
     public void testStub(BigDecimal x, BigDecimal precision, BigDecimal expect){
             BigDecimal result = cosMock.calculate(x, precision);
             assertEquals(expect.doubleValue(), result.doubleValue());

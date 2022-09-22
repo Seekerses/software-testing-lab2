@@ -24,8 +24,9 @@ public class Log implements ExporterMathFunction {
 
     public BigDecimal calculateWithBase(BigDecimal x, BigDecimal base, BigDecimal precision){
         int scale = precision.scale();
-        return ln.calculate(x, precision)
-                .divide(ln.calculate(base, precision), scale + 2, RoundingMode.DOWN)
+        BigDecimal biggerPrecision = precision.divide(BigDecimal.valueOf(20), precision.scale() + 2, RoundingMode.DOWN);
+        return ln.calculate(x, biggerPrecision)
+                .divide(ln.calculate(base, biggerPrecision), scale, RoundingMode.DOWN)
                 .setScale(scale - 1, RoundingMode.DOWN);
     }
 
@@ -33,8 +34,9 @@ public class Log implements ExporterMathFunction {
     @Override
     public BigDecimal calculate(BigDecimal x, BigDecimal precision) {
         int scale = precision.scale();
-        return ln.calculate(x, precision)
-                .divide(ln.calculate(base, precision), scale + 2, RoundingMode.DOWN)
+        BigDecimal biggerPrecision = precision.divide(BigDecimal.valueOf(20), precision.scale() + 2, RoundingMode.DOWN);
+        return ln.calculate(x, biggerPrecision)
+                .divide(ln.calculate(base, biggerPrecision), scale + 2, RoundingMode.DOWN)
                 .setScale(scale - 1, RoundingMode.DOWN);
     }
 

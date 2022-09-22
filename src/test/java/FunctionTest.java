@@ -40,9 +40,6 @@ public class FunctionTest {
         cscStub = new CscStub();
         lnStub = new LnStub();
         logStub = new LogStub();
-
-        MysteryFunction mysteryFunction = new MysteryFunction(new Sin(), new Cos(new Sin()),
-                new Sec(new Cos(new Sin())), new Csc(new Sin()), new Ln(), new Log(new Ln(), BigDecimal.valueOf(2D)));
     }
 
     @ParameterizedTest

@@ -22,13 +22,13 @@ public class LogTest {
     @CsvFileSource(resources = "/out/Log.csv")
     public void testWithMock(BigDecimal x, BigDecimal base, BigDecimal precision, BigDecimal expected){
         Log log = new Log(lnStub.lnMock, base);
-        assertEquals(expected, log.calculateWithBase(x, precision, base));
+        assertEquals(expected, log.calculateWithBase(x, base, precision));
     }
 
     @ParameterizedTest
     @CsvFileSource(resources = "/out/Log.csv")
     public void testWithMoMock(BigDecimal x, BigDecimal base, BigDecimal precision, BigDecimal expected){
         Log log = new Log(new Ln(), base);
-        assertEquals(expected, log.calculateWithBase(x, precision, base));
+        assertEquals(expected, log.calculateWithBase(x, base, precision));
     }
 }

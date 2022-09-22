@@ -22,7 +22,7 @@ public class SecStub {
     public final Sec secMock = mock(Sec.class);
 
     public SecStub(){
-        Filler.fillStub("./src/test/resources/out/Sec.csv", secMock);
+        Filler.fillStub("./src/test/resources/in/Sec.csv", secMock);
     }
 
 

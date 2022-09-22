@@ -22,7 +22,7 @@ public class CscStub {
     public final Csc cscMock = mock(Csc.class);
 
     public CscStub(){
-        Filler.fillStub("./src/test/resources/out/Csc.csv", cscMock);
+        Filler.fillStub("./src/test/resources/in/Csc.csv", cscMock);
     }
 
 

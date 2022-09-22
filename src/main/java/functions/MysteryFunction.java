@@ -30,25 +30,26 @@ public class MysteryFunction implements ExporterMathFunction {
     }
 
     public BigDecimal calculate(BigDecimal x, BigDecimal precision){
-        if (x.compareTo(BigDecimal.ZERO) == 0) throw new ArithmeticException("infinite");
-        if (x.compareTo(BigDecimal.ONE) == 0) throw new ArithmeticException("infinite");
+        if (x.compareTo(BigDecimal.ONE) == 0) throw new ArithmeticException("Infinity");
+        BigDecimal biggerPrecision = precision.divide(BigDecimal.valueOf(100), precision.scale() + 10, RoundingMode.DOWN);
         if(x.compareTo(BigDecimal.ZERO) < 0){
-            BigDecimal sinVal = sin.calculate(x, precision);
-            BigDecimal cosVal = cos.calculate(x, precision);
-            return sec.calculate(x, precision)
+            BigDecimal sinVal = sin.calculate(x, biggerPrecision);
+            BigDecimal cosVal = cos.calculate(x, biggerPrecision);
+            return sec.calculate(x, biggerPrecision)
                     .multiply(cosVal)
-                    .divide(sinVal, precision.scale() + 2, RoundingMode.DOWN)
+                    .divide(sinVal, precision.scale() + 10, RoundingMode.DOWN)
                     .add(cosVal)
                     .add(sinVal)
-                    .multiply(csc.calculate(x, precision));
+                    .multiply(csc.calculate(x, biggerPrecision)).setScale(precision.scale(), RoundingMode.HALF_UP);
         }else {
-            BigDecimal log5 = log.calculateWithBase(x, BigDecimal.valueOf(5), precision);
-            return log.calculateWithBase(x, BigDecimal.TEN, precision)
-                    .add(log.calculateWithBase(x, BigDecimal.valueOf(3), precision))
-                    .multiply(log.calculateWithBase(x, BigDecimal.valueOf(2), precision))
-                    .divide(ln.calculate(x, precision), precision.scale() + 2, RoundingMode.DOWN)
+            BigDecimal log5 = log.calculateWithBase(x, BigDecimal.valueOf(5), biggerPrecision);
+            return log.calculateWithBase(x, BigDecimal.valueOf(10), biggerPrecision)
+                    .add(log.calculateWithBase(x, BigDecimal.valueOf(3), biggerPrecision))
+                    .multiply(log.calculateWithBase(x, BigDecimal.valueOf(2), biggerPrecision))
+                    .divide(ln.calculate(x, biggerPrecision), precision.scale() + 2, RoundingMode.HALF_UP)
                     .add(log5)
-                    .add(log5);
+                    .add(log5)
+                    .setScale(precision.scale(), RoundingMode.HALF_EVEN);
         }
     }
 }

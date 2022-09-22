@@ -45,7 +45,7 @@ public class LnStub{
 //    }
 
     @ParameterizedTest
-    @CsvFileSource(resources = "/in/Ln.csv")
+    @CsvFileSource(resources = "/out/Ln.csv")
     public void testStub(BigDecimal x, BigDecimal precision, BigDecimal expect){
         try {
             BigDecimal result = lnMock.calculate(x, precision);

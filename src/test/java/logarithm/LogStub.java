@@ -2,23 +2,34 @@ package logarithm;
 
 import functions.logarithm.Ln;
 import functions.logarithm.Log;
+import org.apache.commons.csv.CSVFormat;
+import org.apache.commons.csv.CSVParser;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 
+import java.io.FileReader;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.nio.file.Path;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 public class LogStub {
     public final Log logMock = mock(Log.class);
 
     public LogStub(){
-        Filler.fillStub("./src/test/resources/out/Ln.csv", logMock);
+        try {
+            CSVParser parser = CSVFormat.DEFAULT.parse(new FileReader("./src/test/resources/in/Log.csv"));
+            parser.stream().forEach(v -> {
+                when(logMock.calculateWithBase(eq(new BigDecimal(v.get(0))), eq(new BigDecimal(v.get(1))), any()))
+                        .thenReturn(new BigDecimal(v.get(2)));});
+        } catch (IOException ignore) {};
     }
 
 
@@ -69,7 +80,7 @@ public class LogStub {
 //    }
 
     @ParameterizedTest
-    @CsvFileSource(resources = "/in/Log.csv")
+    @CsvFileSource(resources = "/out/Log.csv")
     public void testStub(BigDecimal x, BigDecimal base, BigDecimal precision, BigDecimal expect){
         try {
             BigDecimal result = logMock.calculateWithBase(x,base, precision);
