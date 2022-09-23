@@ -1,4 +1,3 @@
-import functions.trigonometry.Cos;
 import functions.trigonometry.Csc;
 import functions.trigonometry.Sin;
 import org.junit.jupiter.api.BeforeAll;

@@ -17,9 +17,8 @@ public class Filler {
     public static void fillStub(String path, ExporterMathFunction mock){
         try {
             CSVParser parser = CSVFormat.DEFAULT.parse(new FileReader(path));
-            parser.stream().forEach(v -> {
-                    when(mock.calculate(eq(new BigDecimal(v.get(0))), any()))
-                            .thenReturn(new BigDecimal(v.get(1)));});
+            parser.stream().forEach(v -> when(mock.calculate(eq(new BigDecimal(v.get(0))), any()))
+                    .thenReturn(new BigDecimal(v.get(1))));
         } catch (IOException ignore) {}
     }
 }

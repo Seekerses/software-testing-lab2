@@ -1,19 +1,11 @@
 package trigonometry;
 
-import functions.logarithm.Ln;
 import functions.trigonometry.Csc;
-import functions.trigonometry.Sin;
 import logarithm.Filler;
-import logarithm.LnStub;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
-import org.mockito.Mock;
 
-import java.io.IOException;
 import java.math.BigDecimal;
-import java.nio.file.Path;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;

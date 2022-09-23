@@ -5,10 +5,10 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 import trigonometry.CosStub;
-import trigonometry.SinStub;
+
+import java.math.BigDecimal;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import java.math.BigDecimal;
 
 public class SecTest {
     private static CosStub cosStub;

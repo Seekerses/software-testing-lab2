@@ -8,7 +8,6 @@ import functions.trigonometry.Sin;
 import logarithm.LnStub;
 import logarithm.LogStub;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 import trigonometry.CosStub;
@@ -18,10 +17,8 @@ import trigonometry.SinStub;
 
 import java.io.IOException;
 import java.math.BigDecimal;
-import java.nio.file.Path;
-import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class FunctionTest {
 
